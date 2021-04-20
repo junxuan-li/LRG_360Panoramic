@@ -1,20 +1,16 @@
 # Lighting, Reflectance and Geometry Estimation from 360° Panoramic Stereo
 
- [Lighting, Reflectance and Geometry Estimation from 360° Panoramic Stereo, CVPR 2021.](http://cvl.ist.osaka-u.ac.jp/wp-content/uploads/2021/03/li_cvpr2021.pdf)
-
-
-## Dependencies
-
-Environment Requirements:
-- Python 3.6
-- PyTorch 1.7.1
-- OpenCV
-- SciPy
-
-With GPU: NVIDIA GeForce GTX 1080 Ti.
-
+This is the implementation of paper: Lighting, Reflectance and Geometry Estimation from 360° Panoramic Stereo, CVPR 2021.
+( [Paper](https://junxuan-li.github.io/assets/Lighting%20Reflectance%20and%20Geometry%20Estimation%20from%20360%20Panoramic%20Stereo.pdf) | [Supplementary](https://junxuan-li.github.io/assets/Lighting%20Reflectance%20and%20Geometry%20Estimation%20from%20360%20Panoramic%20Stereo-supp.zip) )
 
 ## Overview
+<p align="center">
+<img src="assets/teaser_school.jpg" width="350">  <img src="assets/barbershop.gif" width="440">
+</p>
+<p align="center">
+<img src="assets/overview.jpg" width="800">
+</p>
+
 - The structure of the code is listed as below:
     ```
   ./data  
@@ -46,6 +42,17 @@ With GPU: NVIDIA GeForce GTX 1080 Ti.
             */depth.npy
   ```
   *The `hall` and `room` dataset in `./data/real` is captured by [360SD-Net](https://github.com/albert100121/360SD-Net).*
+
+
+## Dependencies
+
+Environment Requirements:
+- Python 3.6
+- PyTorch 1.7.1
+- OpenCV
+- SciPy
+
+With GPU: NVIDIA GeForce GTX 1080 Ti.
 
 
 ## Running the code
