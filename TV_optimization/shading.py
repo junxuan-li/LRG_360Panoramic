@@ -1,6 +1,11 @@
 import numpy as np
-from Lighting_Estimation import utils
-
+import sys
+sys.path.append('./Lighting_Estimation')
+import utils
+import cv2 as cv
+import os
+import glob
+import time
 
 def light_direction_normal_product(light_direction, normal):
     product = np.sum(light_direction * normal, axis=-1)
@@ -22,10 +27,9 @@ def shading_renderer(env_intensity, target_normal, ld_surface_map):
 
 
 if __name__ == '__main__':
-    import cv2 as cv
-    import os
-    for scene_name in ['bedroom']:  #['bedroom', 'classroom', 'school', 'livingroom', 'barbershop']: #
-        env_list_path = os.path.join('./data/synthetic/', scene_name)
+    scene_path_list = glob.glob('./data/*/*')
+    for env_list_path in scene_path_list:
+        scene_name = os.path.basename(env_list_path)
 
         normal_path = os.path.join(env_list_path, 'output_normal.png')
         normal_map = (cv.imread(normal_path)[:,:,::-1].astype(np.float32) - 127) / 127
@@ -37,7 +41,6 @@ if __name__ == '__main__':
         # env_map = np.load('data/real/office/hdr.npy')
         # env_map = cv.resize(env_map, (128, 64), interpolation=cv.INTER_LINEAR)
 
-        import time
         start_time = time.time()
         shading = np.zeros(shape=normal_map.shape, dtype=np.float32)
         total_num_pixel = shading.shape[0]*shading.shape[1]

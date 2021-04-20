@@ -1,8 +1,11 @@
+import glob
 import cv2 as cv
 import os
 import numpy as np
-from Lighting_Estimation import depth2points
-from Lighting_Estimation import img_interpolation
+import sys
+sys.path.append('./Lighting_Estimation')
+import depth2points
+import img_interpolation
 import time
 from multiprocessing import Pool as ThreadPool
 
@@ -19,11 +22,12 @@ def warpper(param):
 
 
 if __name__ == '__main__':
-    scene_root = './data/real/'
+    scene_path_list = glob.glob('./data/*/*')
+    for scene_root in scene_path_list:
+        s_name = os.path.basename(scene_root)
 
-    for s_name in ['hall', 'room']:  #  ['barbershop', 'bedroom', 'classroom', 'livingroom', 'school']  # ['hall', 'room', 'office']
-        camera_points = np.load(os.path.join(scene_root, s_name, 'camera_points.npy')).astype(np.float32)
-        color_points = np.load(os.path.join(scene_root, s_name, 'hdr_color_points.npy')).astype(np.float32)  # color_points in RGB format
+        camera_points = np.load(os.path.join(scene_root, 'camera_points.npy')).astype(np.float32)
+        color_points = np.load(os.path.join(scene_root, 'hdr_color_points.npy')).astype(np.float32)  # color_points in RGB format
 
         # target_env_map_size = (64, 128)
         target_env_map_size = (32, 64)
@@ -46,7 +50,7 @@ if __name__ == '__main__':
             pool.join()
             results_arr = np.array(results)
             print('done')
-            np.save(os.path.join(scene_root, s_name, 'warped_env_map_part_%04d.npy' % this_part), results_arr)
+            np.save(os.path.join(scene_root, 'warped_env_map_part_%04d.npy' % this_part), results_arr)
             del results
             del params
             del results_arr
