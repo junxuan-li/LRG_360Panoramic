@@ -96,7 +96,7 @@ With GPU: NVIDIA GeForce GTX 1080 Ti.
 ## Citation
 If you find this code useful in your reasearch, please consider cite:
 ```
-@inproceedings{li2019learning,
+@inproceedings{li2021lighting,
   title={Lighting, Reflectance and Geometry Estimation from 360° Panoramic Stereo},
   author={Li, Junxuan and Li, Hongdong and Matsushita, Yasuyuki},
   booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
